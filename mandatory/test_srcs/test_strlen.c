@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_strlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/12 15:15:45 by tjinichi          #+#    #+#             */
-/*   Updated: 2020/11/12 15:33:02 by tjinichi         ###   ########.fr       */
+/*   Created: 2021/01/28 18:45:45 by tjinichi          #+#    #+#             */
+/*   Updated: 2021/01/30 17:16:04 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// nasm -f macho64 ft_strlen.s && gcc ../main.c ft_strlen.o && ./a.out
+#include "../../includes/libasm.h"
 
-#include "libasm.h"
-
-int main()
+void	test_strlen(char *arg)
 {
-	int a, b;
-	a = ft_strlen("Hello world.\n");
-	b = strlen("Hello world.\n");
-	printf("ft_strlen : %d, strlen : %d\n", a, b);
+	printf("[strlen(\"%s\")]\n", arg);
+	printf("ft_strlen : %zu\n", ft_strlen(arg));
+	printf("   strlen : %zu\n", strlen(arg));
+	puts("");
 }

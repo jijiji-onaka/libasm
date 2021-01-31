@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libasm.h                                           :+:      :+:    :+:   */
+/*   test_strcpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/12 15:18:24 by tjinichi          #+#    #+#             */
-/*   Updated: 2020/11/12 15:32:02 by tjinichi         ###   ########.fr       */
+/*   Created: 2021/01/28 21:56:21 by tjinichi          #+#    #+#             */
+/*   Updated: 2021/01/30 17:16:04 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBASM_H
-# define LIBASM_H
+#include "../../includes/libasm.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-
-int			ft_strlen(const char *s);
-int			ft_strcmp(const char *s1, const char *s2);
-char		*ft_strcpy(char *dst, const char *src);
-ssize_t		ft_read(int fildes, void *buf, size_t nbyte);
-ssize_t		ft_write(int fildes, const void *buf, size_t nbyte);
-
-#endif
+void	test_strcpy(char s1[10], char *s2)
+{
+	printf("[strcpy(\"%s\", \"%s\")]\n", s1, s2);
+	printf("ft_strcpy : [%s]\n", ft_strcpy(s1, s2));
+	char	strcpy_buf[10] = "abcdefgh";
+	printf("   strcpy : [%s]\n", strcpy(strcpy_buf, s2));
+	puts("");
+}
