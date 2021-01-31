@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 17:55:51 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/31 21:01:00 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/01 01:18:08 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main()
 
 	TITLE("ft_list_sort");
 	test_list_sort();
+
+	TITLE("ft_atoi_base");
+	test_atoi_base();
 }
 
 // __attribute__((destructor))

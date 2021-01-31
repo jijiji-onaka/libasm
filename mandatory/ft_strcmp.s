@@ -20,6 +20,8 @@ global _ft_strcmp
 
 _ft_strcmp:
 		mov	rax, -1
+		xor	rdx, rdx
+		xor	rcx, rcx
 		jmp	.compare
 
 .compare:
@@ -28,12 +30,12 @@ _ft_strcmp:
 		mov	cl, byte[rsi + rax]
 		cmp	dl, 0x0
 		je	.end
-		cmp	dl, cl
+		cmp	edx, ecx
 		je	.compare
 		jz	.end
 
 .end:
-		cmp	dl, cl
+		cmp	edx, ecx
 		jl	.little
 		je	.equal
 		jg	.greater
