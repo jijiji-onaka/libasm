@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:15:45 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/30 17:07:33 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/01/31 23:55:33 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int output_all(void)
 	test_strcmp("", "bc");
 	test_strcmp("ab", "");
 	test_strcmp("", "");
+	char	strcmp_buf[12] = "abcdefg";
+	strcmp_buf[3] = 240;
+	test_strcmp(strcmp_buf, "abcdefg");
+
 	TITLE("strcpy");
 	char strcpy_buf[10] = "abcdefgh";
 	test_strcpy(strcpy_buf, "abc");
@@ -43,6 +47,10 @@ int output_all(void)
 	int fd = open("writefile", O_WRONLY);
 	ft_write(fd, "hello\n", 6);
 	write(fd, "hello\n", 6);
+	close(fd);
+	write(1, "hello\n", 6);
+	ft_write(42, "hello\n", 6);
+	write(1, "hello\n", 6);
 	TITLE("strdup");
 	test_strdup("Jinichiro");
 	test_strdup("42Tokyo");
@@ -71,6 +79,9 @@ int main(int argc, char **argv)
 		test_strcmp("", "bc");
 		test_strcmp("ab", "");
 		test_strcmp("", "");
+		char strcmp_buf[12] = "abcdefg";
+		strcmp_buf[3] = 240;
+		test_strcmp(strcmp_buf, "abcdefg");
 	}
 	else if (strcmp(argv[1], "strcpy") == 0)
 	{
