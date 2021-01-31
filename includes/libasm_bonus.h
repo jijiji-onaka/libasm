@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:18:24 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/31 19:44:05 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/01/31 20:58:53 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,14 @@ int		ft_list_size(t_list *begin_list);
 void	ft_list_push_front(t_list **begin_list, void *data);
 void	ft_list_remove_if(t_list **begin_list,
 			void *data_ref, int (*cmp)(), void (*free_fct)(void *));
-
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
 
 void	test_list_push_front(void);
 void	test_list_size(void);
 void	test_list_remove(void);
+void	test_list_sort(void);
+
+t_list	*ft_create_elem(void *data);
+void	my_clang_list_push_front(t_list **begin_list, void *data);
 
 #endif
