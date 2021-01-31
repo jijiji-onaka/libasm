@@ -1,31 +1,24 @@
 #include "includes/libasm_bonus.h"
 
-void	ft_list_remove_if2(t_list **list,
-			void *data, int (*cmp)(), void (*free_fct)(void *))
+void	my_clang_list_sort(t_list **list, int (*cmp)())
 {
+	void	*tmp;
 	t_list	*begin;
-	t_list	*save;
 
-	begin = *list;
-	if (*list == NULL)
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return ;
-	while (*list && (*list)->next)
+	begin = *list;
+	while ((*list)->next)
 	{
-		if (cmp(data, (*list)->next->data) == 0)
+		if (cmp((*list)->data, (*list)->next->data) > 0)
 		{
-			save = (*list)->next;
-			(*list)->next = (*list)->next->next;
-			free(save->data);
-			free(save);
+			tmp = (*list)->data;
+			(*list)->data = (*list)->next->data;
+			(*list)->next->data = tmp;
+			*list = begin;
 		}
-		*list = (*list)->next;
+		else
+			*list = (*list)->next;
 	}
 	*list = begin;
-	if (cmp(data, (*list)->data) == 0)
-	{
-		save = (*list)->next;
-		free((*list)->data);
-	    free(*list);
-		*list = save;
-	}
 }

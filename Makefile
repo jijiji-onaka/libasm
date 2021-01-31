@@ -18,6 +18,7 @@ INCULDES = includes
 B_SRCS =	bonus/ft_list_push_front_bonus.s \
 			bonus/ft_list_size_bonus.s \
 			bonus/ft_list_remove_if_bonus.s \
+			bonus/ft_list_sort_bonus.s \
 
 #			ft_list_push_front_bonus.s \
 #			ft_list_sort_bonus.s \

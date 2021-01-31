@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:51:53 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/31 19:49:41 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/01/31 20:08:06 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,6 @@
 void	FREE(void *ptr)
 {
 	free(ptr);
-}
-
-static t_list	*ft_create_elem(void *data)
-{
-	t_list	*list;
-
-	list = malloc(sizeof(t_list));
-	if (list)
-	{
-		list->data = data;
-		list->next = NULL;
-	}
-	return (list);
-}
-
-static void	my_clang_list_push_front(t_list **begin_list, void *data)
-{
-	t_list	*new;
-
-	if (begin_list == NULL)
-		return ;
-	new = ft_create_elem(data);
-	new->next = *begin_list;
-	*begin_list = new;
 }
 
 void	test_list_remove(void)

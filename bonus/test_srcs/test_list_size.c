@@ -6,33 +6,11 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:24:13 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/31 19:48:29 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/01/31 20:07:51 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libasm_bonus.h"
-
-static t_list	*ft_create_elem(void *data)
-{
-	t_list	*list;
-
-	list = malloc(sizeof(t_list));
-	if (list)
-	{
-		list->data = data;
-		list->next = NULL;
-	}
-	return (list);
-}
-
-static void my_clang_list_push_front(t_list **begin_list, void *data)
-{
-	t_list	*new;
-
-	new = ft_create_elem(data);
-	new->next = *begin_list;
-	*begin_list = new;
-}
 
 // int	ft_list_size(t_list *lst)
 // {
