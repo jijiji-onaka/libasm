@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:18:24 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 03:42:13 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/02 02:40:05 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct		s_list
 }					t_list;
 
 # define TITLE(x) printf("\033[36m\033[1m-------------%s---------------\033[m\n", x)
+# define STATUS(x) printf("\033[1m%s\033[0m\n", x)
+# define OK puts("\033[0;32m\033[1m ---> OK\033[0m")
+# define NG puts("\033[0;31m\033[1m ---> NG\033[0m")
 
 int		ft_list_size(t_list *begin_list);
 void	ft_list_push_front(t_list **begin_list, void *data);

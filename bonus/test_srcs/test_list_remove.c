@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:51:53 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 18:03:35 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/02 02:31:19 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	test_list_remove(void)
 {
 	t_list	*lst;
 
-	puts("============= Before list ==============");
+	STATUS("[Before list]");
 	lst = NULL;
 	my_clang_list_push_front(&lst, strdup("last"));
 	my_clang_list_push_front(&lst, "ichiro");
@@ -35,7 +35,7 @@ void	test_list_remove(void)
 		printf("%s\n", (char *)(lst->data));
 		lst = lst->next;
 	}
-	puts("============= Remove middle data(= ft_services) ==============");
+	STATUS("[Remove middle data(= ft_services)]");
 	lst = begin;
 	ft_list_remove_if(&lst, "ft_services", strcmp, FREE);
 	t_list	*begin1 = lst;
@@ -46,7 +46,7 @@ void	test_list_remove(void)
 		printf("%s\n", (char *)(lst->data));
 		lst = tmp;
 	}
-	puts("============= Remove first data(= first) ==============");
+	STATUS("[Remove first data(= first)]");
 	lst = begin1;
 	ft_list_remove_if(&lst, "first", strcmp, FREE);
 	t_list	*begin2 = lst;
@@ -57,7 +57,7 @@ void	test_list_remove(void)
 		printf("%s\n", (char *)(lst->data));
 		lst = tmp;
 	}
-	puts("============= Remove last data(= last) ==============");
+	STATUS("[Remove last data(= last)]");
 	lst = begin2;
 	ft_list_remove_if(&lst, "last", strcmp, FREE);
 	while (lst)
@@ -68,11 +68,14 @@ void	test_list_remove(void)
 		free(lst);
 		lst = tmp;
 	}
-	puts("============= *begin == NULL pattern ================");
+	STATUS("[Pattern : *lst = NULL]");
 	lst = NULL;
 	ft_list_remove_if(&lst, "ft_services", strcmp, FREE);
-	printf("%p\n", lst);
-	puts("============= all same data ================");
+	if (lst == NULL)
+		puts("OK");
+	else
+		puts("NG");
+	STATUS("[All same data]");
 	lst = NULL;
 	my_clang_list_push_front(&lst, strdup("same"));
 	my_clang_list_push_front(&lst, strdup("same"));

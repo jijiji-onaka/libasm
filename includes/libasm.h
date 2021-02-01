@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 15:18:24 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/31 19:44:16 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/02 02:02:41 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@
 # include <errno.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define TITLE(x) printf("\033[36m\033[1m-------------%s---------------\033[m\n", x)
+# define OK puts("\033[0;32m\033[1m ---> OK\033[0m")
+# define NG puts("\033[0;31m\033[1m ---> NG\033[0m")
 
 size_t	ft_strlen(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);

@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:05:24 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 03:44:29 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/02 02:33:22 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	test_list_sort(void)
 	my_clang_list_push_front(&lst, "aaa");
 	my_clang_list_push_front(&lst, "aaa");
 	my_clang_list_push_front(&lst, "zzz");
-	puts("============= Before sort ==============");
+	STATUS("[Before list]");
 	t_list *begin = lst;
 	while (lst)
 	{
@@ -29,7 +29,7 @@ void	test_list_sort(void)
 		printf("%s\n", (char *)(lst->data));
 		lst = tmp;
 	}
-	puts("============= after sort ==============");
+	STATUS("[Sorted list]");
 	lst = begin;
 	ft_list_sort(&lst, strcmp);
 	while (lst)
@@ -41,14 +41,17 @@ void	test_list_sort(void)
 		lst = NULL;
 		lst = tmp;
 	}
-	puts("============= *begin_list == NULL ==============");
+	STATUS("[Pattern : *lst = NULL]");
 	lst = NULL;
 	ft_list_sort(&lst, strcmp);
-	puts("OK");
-	puts("============= begin_list == NULL ==============");
+	if (lst == NULL)
+		puts("OK");
+	else
+		puts("NG");
+	STATUS("[ft_list_sort(NULL, strcmp)]");
 	ft_list_sort(NULL, strcmp);
 	puts("OK");
-	puts("============= Only one element. ==============");
+	STATUS("[Only one element]");
 	my_clang_list_push_front(&lst, "tjinichi");
 	ft_list_sort(&lst, strcmp);
 	while (lst)

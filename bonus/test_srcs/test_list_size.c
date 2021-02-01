@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:24:13 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 17:54:06 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/02 02:26:42 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,18 @@ void	test_list_size(void)
 	my_clang_list_push_front(&lst, "Jin");
 	my_clang_list_push_front(&lst, "Takao");
 
-puts("============= Normal =============");
+	STATUS("[Before list]");
+	t_list *begin = lst;
+	while (lst)
+	{
+		printf("%s\n", (char *)(lst->data));
+		lst = lst->next;
+	}
+	lst = begin;
+	STATUS("[Normal]");
 	int	count = ft_list_size(lst);
 	printf("%d\n", count);
-puts("============= lst == NULL =============");
+	STATUS("[ft_list_size(NULL)]");
 	count = ft_list_size(NULL);
 	printf("%d\n", count);
 	while (lst)

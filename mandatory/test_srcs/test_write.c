@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 15:47:04 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/30 17:16:04 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/02 02:18:14 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	test_write(int fd, char *str)
 	else
 		rc = write(fd, str, strlen(str));
 	printf("]\n");
-	printf("return_value:[%ld]\nstrerror:[%s]\nerrno:[%d]\n\n", rc, strerror(errno), errno);
+	printf("return_value:[%ld]\nstrerror:[%s]\nerrno:[%d]\n", rc, strerror(errno), errno);
 }

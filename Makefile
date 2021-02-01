@@ -21,8 +21,8 @@ B_SRCS =	bonus/ft_list_push_front_bonus.s \
 			bonus/ft_list_sort_bonus.s \
 			bonus/ft_atoi_base.s \
 
-TEST_SRCS =	$(wildcard mandatory/test_srcs/*.c) \
-			$(wildcard bonus/test_srcs/*.c) \
+TEST_SRCS =	$(wildcard mandatory/test_srcs/*.c)
+TEST_B_SRCS =	$(wildcard bonus/test_srcs/*.c) \
 
 OBJS = $(SRCS:.s=.o)
 B_OBJS = $(B_SRCS:.s=.o)
@@ -42,7 +42,7 @@ clean:
 	rm -f $(OBJS) $(B_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) test
 	rm -f libasm
 
 re: fclean all
@@ -53,7 +53,7 @@ test: all
 	@ echo "$(GREEN)Created exe file"
 	@ echo "$(BOLD)Usage : ./test [No argument or function name]$(RESET)"
 test_bonus: bonus
-	$(CC) -I$(INCLUDES) $(CFLAGS) $(TEST_SRCS) $(NAME) main_bonus.c -o test
+	$(CC) -I$(INCLUDES) $(CFLAGS) $(TEST_B_SRCS) $(NAME) main_bonus.c -o test
 	@ echo "$(GREEN)Created exe file"
 	@ echo "$(BOLD)Usage : ./test [No argument or function name]$(RESET)"
 

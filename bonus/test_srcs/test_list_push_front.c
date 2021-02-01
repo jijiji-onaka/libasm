@@ -6,7 +6,7 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 17:18:52 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/31 20:11:44 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/02 02:26:51 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@ void	test_list_push_front(void)
 	my_clang_list_push_front(&lst, "ichiro");
 	my_clang_list_push_front(&lst, "Jin");
 
-	puts("============= Before list ==============");
+	STATUS("[Before list]");
 	t_list *begin = lst;
 	while (lst)
 	{
-		t_list *tmp;
-		tmp = lst->next;
 		printf("%s\n", (char *)(lst->data));
-		lst = tmp;
+		lst = lst->next;
 	}
-	puts("============= push front ===============");
+	STATUS("[ft_list_push_front(&lst, arg)]");
 	lst = begin;
 	ft_list_push_front(&lst, "Takao");
 	while (lst)
@@ -40,27 +38,7 @@ void	test_list_push_front(void)
 		free(lst);
 		lst = tmp;
 	}
-	puts("============= argument = NULL ===============");
+	STATUS("[ft_list_push_front(NULL, arg)]");
 	ft_list_push_front(NULL, "Takao");
 	puts("OK");
 }
-
-
-// int	main()
-// {
-// 	t_list	*lst;
-
-// 	lst = NULL;
-// 	ft_list_push_front(&lst, "ichiro");
-// 	ft_list_push_front(&lst, "Jin");
-// 	ft_list_push_front(&lst, "Takao");
-
-// 	while (lst)
-// 	{
-// 		t_list	*tmp;
-// 		tmp = lst->next;
-// 		printf("%s\n", (char*)lst->data);
-// 		free(lst);
-// 		lst = tmp;
-// 	}
-// }
