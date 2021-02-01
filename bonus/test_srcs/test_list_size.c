@@ -6,22 +6,11 @@
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 19:24:13 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/01/31 20:07:51 by tjinichi         ###   ########.fr       */
+/*   Updated: 2021/02/01 17:54:06 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libasm_bonus.h"
-
-// int	ft_list_size(t_list *lst)
-// {
-// 	int count = 0;
-// 	while (lst)
-// 	{
-// 		count++;
-// 		lst = lst->next;
-// 	}
-// 	return (count);
-// }
 
 void	test_list_size(void)
 {
@@ -35,23 +24,13 @@ void	test_list_size(void)
 puts("============= Normal =============");
 	int	count = ft_list_size(lst);
 	printf("%d\n", count);
-	while (lst)
-		lst = lst->next;
 puts("============= lst == NULL =============");
-	count = ft_list_size(lst);
+	count = ft_list_size(NULL);
 	printf("%d\n", count);
+	while (lst)
+	{
+		t_list	*tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
 }
-
-
-// int	main()
-// {
-// 	t_list	*lst;
-
-// 	lst = NULL;
-// 	ft_list_push_front(&lst, "ichiro");
-// 	ft_list_push_front(&lst, "Jin");
-// 	ft_list_push_front(&lst, "Takao");
-
-// 	int	count = ft_list_size(lst);
-// 	printf("%d\n", count);
-// }

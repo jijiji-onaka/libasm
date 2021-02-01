@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   list_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 03:31:14 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 03:47:52 by tjinichi         ###   ########.fr       */
+/*   Created: 2021/02/01 03:40:37 by tjinichi          #+#    #+#             */
+/*   Updated: 2021/02/01 03:41:23 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,54 @@ void	my_clang_list_sort(t_list **list, int (*cmp)())
 			*list = (*list)->next;
 	}
 	*list = begin;
+}
+
+int	main()
+{
+	t_list	*lst;
+
+	my_clang_list_push_front(&lst, "tjinichi");
+	my_clang_list_push_front(&lst, "aaa");
+	my_clang_list_push_front(&lst, "aaa");
+	my_clang_list_push_front(&lst, "zzz");
+	puts("============= Before sort ==============");
+	t_list *begin = lst;
+	while (lst)
+	{
+		t_list *tmp;
+		tmp = lst->next;
+		printf("%s\n", (char *)(lst->data));
+		lst = tmp;
+	}
+	puts("============= after sort ==============");
+	lst = begin;
+	my_clang_list_sort(&lst, strcmp);
+	while (lst)
+	{
+		t_list *tmp;
+		tmp = lst->next;
+		printf("%s\n", (char *)(lst->data));
+		free(lst);
+		lst = NULL;
+		lst = tmp;
+	}
+	puts("============= *begin_list == NULL ==============");
+	lst = NULL;
+	my_clang_list_sort(&lst, strcmp);
+	puts("OK");
+	puts("============= begin_list == NULL ==============");
+	my_clang_list_sort(NULL, strcmp);
+	puts("OK");
+	puts("============= Only one element. ==============");
+	my_clang_list_push_front(&lst, "tjinichi");
+	my_clang_list_sort(&lst, strcmp);
+	while (lst)
+	{
+		t_list *tmp;
+		tmp = lst->next;
+		printf("%s\n", (char *)(lst->data));
+		free(lst);
+		lst = NULL;
+		lst = tmp;
+	}
 }

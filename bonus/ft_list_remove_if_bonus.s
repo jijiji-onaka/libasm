@@ -63,6 +63,7 @@ _ft_list_remove_if:
 		call	rdx
 		mov		rdi, [rbp - 16] ; rdi = save
 		call	_free
+		jmp		.check_while_loop_condition
 .next_list:
 		mov		rax, [rbp - 24] ; rax = list
 		mov		rdx, [rax] ; rdx = *list

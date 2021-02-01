@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   list_size.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 03:31:14 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 03:47:52 by tjinichi         ###   ########.fr       */
+/*   Created: 2021/02/01 03:42:33 by tjinichi          #+#    #+#             */
+/*   Updated: 2021/02/01 03:43:57 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,34 @@ void my_clang_list_push_front(t_list **begin_list, void *data)
 	*begin_list = new;
 }
 
-void	my_clang_list_sort(t_list **list, int (*cmp)())
+int	ft_list_size(t_list *lst)
 {
-	void	*tmp;
-	t_list	*begin;
-
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-		return ;
-	begin = *list;
-	while ((*list)->next)
+	if (lst == NULL)
+		return (-1);
+	int count = 0;
+	while (lst)
 	{
-		if (cmp((*list)->data, (*list)->next->data) > 0)
-		{
-			tmp = (*list)->data;
-			(*list)->data = (*list)->next->data;
-			(*list)->next->data = tmp;
-			*list = begin;
-		}
-		else
-			*list = (*list)->next;
+		count++;
+		lst = lst->next;
 	}
-	*list = begin;
+	return (count);
+}
+
+int	main()
+{
+	t_list *lst;
+
+	lst = NULL;
+	my_clang_list_push_front(&lst, "ichiro");
+	my_clang_list_push_front(&lst, "Jin");
+	my_clang_list_push_front(&lst, "Takao");
+
+	puts("============= Normal =============");
+	int count = ft_list_size(lst);
+	printf("%d\n", count);
+	while (lst)
+		lst = lst->next;
+	puts("============= lst == NULL =============");
+	count = ft_list_size(lst);
+	printf("%d\n", count);
 }

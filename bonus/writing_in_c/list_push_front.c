@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   list_push_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 03:31:14 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 03:47:52 by tjinichi         ###   ########.fr       */
+/*   Created: 2021/02/01 03:44:14 by tjinichi          #+#    #+#             */
+/*   Updated: 2021/02/01 03:45:42 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,42 @@ void my_clang_list_push_front(t_list **begin_list, void *data)
 {
 	t_list	*new;
 
+	if (begin_list == NULL)
+		return ;
 	new = ft_create_elem(data);
 	new->next = *begin_list;
 	*begin_list = new;
 }
 
-void	my_clang_list_sort(t_list **list, int (*cmp)())
+int	main()
 {
-	void	*tmp;
-	t_list	*begin;
+	t_list *lst;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-		return ;
-	begin = *list;
-	while ((*list)->next)
+	lst = NULL;
+	my_clang_list_push_front(&lst, "ichiro");
+	my_clang_list_push_front(&lst, "Jin");
+
+	puts("============= Before list ==============");
+	t_list *begin = lst;
+	while (lst)
 	{
-		if (cmp((*list)->data, (*list)->next->data) > 0)
-		{
-			tmp = (*list)->data;
-			(*list)->data = (*list)->next->data;
-			(*list)->next->data = tmp;
-			*list = begin;
-		}
-		else
-			*list = (*list)->next;
+		t_list *tmp;
+		tmp = lst->next;
+		printf("%s\n", (char *)(lst->data));
+		lst = tmp;
 	}
-	*list = begin;
+	puts("============= push front ===============");
+	lst = begin;
+	my_clang_list_push_front(&lst, "Takao");
+	while (lst)
+	{
+		t_list *tmp;
+		tmp = lst->next;
+		printf("%s\n", (char *)(lst->data));
+		free(lst);
+		lst = tmp;
+	}
+	puts("============= argument = NULL ===============");
+	my_clang_list_push_front(NULL, "Takao");
+	puts("OK");
 }

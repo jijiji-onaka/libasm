@@ -1,23 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_list_remove.c                                 :+:      :+:    :+:   */
+/*   list_remove_if.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjinichi <tjinichi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/30 19:51:53 by tjinichi          #+#    #+#             */
-/*   Updated: 2021/02/01 18:03:35 by tjinichi         ###   ########.fr       */
+/*   Created: 2021/02/01 03:37:44 by tjinichi          #+#    #+#             */
+/*   Updated: 2021/02/01 18:03:43 by tjinichi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libasm_bonus.h"
+
+t_list	*ft_create_elem(void *data)
+{
+	t_list	*list;
+
+	list = malloc(sizeof(t_list));
+	if (list)
+	{
+		list->data = data;
+		list->next = NULL;
+	}
+	return (list);
+}
+
+void my_clang_list_push_front(t_list **begin_list, void *data)
+{
+	t_list	*new;
+
+	new = ft_create_elem(data);
+	new->next = *begin_list;
+	*begin_list = new;
+}
 
 void	FREE(void *ptr)
 {
 	free(ptr);
 }
 
-void	test_list_remove(void)
+void	my_clang_list_remove_if(t_list **list,
+			void *data, int (*cmp)(), void (*free_fct)(void *))
+{
+	t_list	*begin;
+	t_list	*save;
+
+	begin = *list;
+	if (*list == NULL)
+		return ;
+	while (*list && (*list)->next)
+	{
+		if (cmp(data, (*list)->next->data) == 0)
+		{
+			save = (*list)->next;
+			(*list)->next = (*list)->next->next;
+			free_fct(save->data);
+			free(save);
+		}
+		else
+			*list = (*list)->next;
+	}
+	*list = begin;
+	if (cmp(data, (*list)->data) == 0)
+	{
+		save = (*list)->next;
+		free_fct((*list)->data);
+	    free(*list);
+		*list = save;
+	}
+}
+
+int	main()
 {
 	t_list	*lst;
 
@@ -37,7 +90,7 @@ void	test_list_remove(void)
 	}
 	puts("============= Remove middle data(= ft_services) ==============");
 	lst = begin;
-	ft_list_remove_if(&lst, "ft_services", strcmp, FREE);
+	my_clang_list_remove_if(&lst, "ft_services", strcmp, FREE);
 	t_list	*begin1 = lst;
 	while (lst)
 	{
@@ -48,7 +101,7 @@ void	test_list_remove(void)
 	}
 	puts("============= Remove first data(= first) ==============");
 	lst = begin1;
-	ft_list_remove_if(&lst, "first", strcmp, FREE);
+	my_clang_list_remove_if(&lst, "first", strcmp, FREE);
 	t_list	*begin2 = lst;
 	while (lst)
 	{
@@ -59,7 +112,7 @@ void	test_list_remove(void)
 	}
 	puts("============= Remove last data(= last) ==============");
 	lst = begin2;
-	ft_list_remove_if(&lst, "last", strcmp, FREE);
+	my_clang_list_remove_if(&lst, "last", strcmp, FREE);
 	while (lst)
 	{
 		t_list *tmp;
@@ -70,7 +123,7 @@ void	test_list_remove(void)
 	}
 	puts("============= *begin == NULL pattern ================");
 	lst = NULL;
-	ft_list_remove_if(&lst, "ft_services", strcmp, FREE);
+	my_clang_list_remove_if(&lst, "ft_services", strcmp, FREE);
 	printf("%p\n", lst);
 	puts("============= all same data ================");
 	lst = NULL;
@@ -83,7 +136,7 @@ void	test_list_remove(void)
 	my_clang_list_push_front(&lst, strdup("same"));
 	my_clang_list_push_front(&lst, strdup("same"));
 	my_clang_list_push_front(&lst, strdup("same"));
-	ft_list_remove_if(&lst, "same", strcmp, FREE);
+	my_clang_list_remove_if(&lst, "same", strcmp, FREE);
 	int	f = 0;
 	while (lst)
 	{

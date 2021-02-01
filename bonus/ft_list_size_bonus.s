@@ -4,8 +4,6 @@ section .text
 global	_ft_list_size
 
 _ft_list_size:
-		cmp	rdi, 0x0
-		je	.error
 		xor	rax, rax
 		jmp	.loop
 
@@ -17,7 +15,4 @@ _ft_list_size:
 		jmp	.loop
 
 .end:
-		ret
-.error:
-		mov	rax, -1
 		ret
